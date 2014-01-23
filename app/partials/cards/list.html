@@ -1,0 +1,4 @@
+<input ng-model="search" type="text" placeholder="Search" ng-change="cardSearch()">
+<li>
+	<ul ng-repeat="card in cards"><a href="#/cards/{{ card.id }}">{{ card.name }}</a></ul>
+</li>

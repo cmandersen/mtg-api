@@ -1,0 +1,13 @@
+<button class="btn btn-default" ng-click="selectRandom()"><i class="glyphicon glyphicon-random"></i> Random</button>
+<br />
+<br />
+<div class="row" ng-repeat="row in planeRows">
+	<div class="col-md-3" ng-repeat="plane in row">
+		<div class="thumbnail">
+			<a href="#/planes/{{ plane.id }}">
+				<strong>{{ plane.name }}</strong>
+				<img src="{{ plane.image }}" alt="{{ plane.name }}">
+			</a>
+		</div>
+	</div>
+</div>
