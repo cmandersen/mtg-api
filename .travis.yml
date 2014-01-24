@@ -7,8 +7,8 @@ php:
 before_install:
   - cd ~/builds
   - git clone git://github.com/laravel/laravel.git
-  - mv ./cmamdersen/mtg-api ./laravel/bundles/mtg-api
+  - mv ./cmandersen/mtg-api ./laravel/bundles/mtg-api
   - echo "<?php return array('mtg-api' => array('auto' => true));" > ./laravel/application/bundles.php
   - cd ./laravel
 
-script: "php artisan test mtg-api"
+script: "php artisan test mtg-api
