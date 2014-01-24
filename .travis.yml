@@ -11,4 +11,4 @@ before_install:
   - echo "<?php return array('mtg-api' => array('auto' => true));" > ./laravel/application/bundles.php
   - cd ./laravel
 
-script: "php artisan test mtg-api
+script: "php artisan test mtg-api"
