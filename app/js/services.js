@@ -36,5 +36,33 @@ define(["angular"], function(angular) {
 				Cards: $resource("/api/v1/cards/:id", {id: "@id"}),
 				Planes: $resource("/api/v1/planes/:id", {id: "@id"}),
 			};
+		}])
+		.service("Plane", ["API", "$rootScope", function(API, $rootScope) {
+			this.planes = []
+			this.get = function(callback) {
+				if(this.planes.length > 0) {
+					console.log("Exists");
+					callback(this.planes);
+					return this.planes;
+				} else {
+					console.log("Getting...");
+					return API.Planes.query(function(planes) {
+						$rootScope.$emit("setPlanes", planes);
+						callback(planes);
+					});
+				}
+				
+			}
+
+			$rootScope.$on("setPlanes", function(planes) {
+				this.planes = planes;
+			}.bind(this));
+
+			$rootScope.$on("randomPlanes", function() {
+				API.Planes.query({randomize: true}, function(planes) {
+					$rootScope.$emit("setPlanes", planes);
+					$rootScope.$broadcast("planesUpdated", planes);
+				});
+			});
 		}]);
 });

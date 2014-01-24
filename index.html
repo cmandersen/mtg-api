@@ -5,10 +5,24 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<title>MTG Card Database</title>
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.3/cosmo/bootstrap.min.css">
+		<link rel="stylesheet" href="/app/css/template.css">
+		<script type="text/javascript">
+			<!-- 
+			(function() { 
+			    if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) { 
+			        var msViewportStyle = document.createElement("style"); 
+			        msViewportStyle.appendChild( 
+			            document.createTextNode("@-ms-viewport{width:auto!important}") 
+			        ); 
+			        document.getElementsByTagName("head")[0].appendChild(msViewportStyle); 
+			    } 
+			})(); 
+			//--> 
+		</script>
 		<script src="app/lib/require.js" data-main="app/js/main"></script>
 	</head>
-	<body ng-controller="IndexCtrl">
-		<menu title="MTG Database">
+	<body ng-controller="IndexCtrl" ng-shift>
+		<menu title="MTG Database" ng-cloak>
 			<menu-item-parent match="/cards.*|/planes.*" title="Cards">
 				<menu-item route="#/cards" match="/cards">Cards</menu-item>
 				<menu-item route="#/planes" match="/planes">Planes</menu-item>

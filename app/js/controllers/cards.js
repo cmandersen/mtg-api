@@ -22,7 +22,7 @@ define(["angular"], function(angular) {
 			});
 		}])
 
-		.controller("PlaneListCtrl", ["$scope", "API", "$routeParams", "$location", function($scope, API, $routeParams, $location) {
+		.controller("PlaneListCtrl", ["$scope", "Plane", "$routeParams", "$location", "$modal", function($scope, Plane, $routeParams, $location, $modal) {
 
 			Array.prototype.chunk = function(chunkSize) {
 			    var R = [];
@@ -32,20 +32,63 @@ define(["angular"], function(angular) {
 			}
 
 			$scope.planeRows;
-			$scope.planes = API.Planes.query(function(data) {
-				$scope.planeRows = data.chunk(4);
+			$scope.planes = Plane.get(function(planes) {
+				$scope.planeRows = planes.chunk(4);
+			});
+
+			$scope.$on("planesUpdated", function(evt, planes) {
+				$scope.planes = planes;
+				$scope.planeRows = planes.chunk(4);
 			});
 
 			$scope.selectRandom = function() {
-				$scope.planes = API.Planes.query({randomize: true}, function(data) {
-					$scope.planeRows = data.chunk(4);
-				});
+				$scope.$emit("randomPlanes", {});
 			};
+
+			$scope.openModal = function(id) {
+				for(var index in $scope.planes) {
+					var plane = $scope.planes[index];
+					if(plane.id == id) {
+						$scope.plane = plane;
+						$scope.index = index;
+					}
+				}
+
+				$scope.modal();
+			};
+
+			$scope.shift = function(event) {
+				if(event.keyIdentifier == "Left") {
+					$scope.index--;
+					if($scope.index < 0) {
+						$scope.index = $scope.planes.length - 1;
+					}
+				} else if(event.keyIdentifier == "Right") {
+					$scope.index++;
+					if($scope.index == $scope.planes.length) {
+						$scope.index = 0;
+					}
+				}
+
+				$scope.plane = $scope.planes[$scope.index];
+
+				$scope.modal();
+			}
+
+			$scope.modal = function() {
+				$modal.open({
+					templateUrl: "planeModal.html",
+					controller: "PlaneModalCtrl",
+					scope: $scope,
+				});
+			}
 		}])
 
-		.controller("PlaneCtrl", ["$scope", "API", "$routeParams", function($scope, API, $routeParams) {
-			$scope.plane = API.Planes.get({id: $routeParams.id}, function(data) {
-				console.log(data);
+		.controller("PlaneModalCtrl", ["$scope", "$modalInstance", function($scope, $modalInstance) {
+			var removeListen = $scope.$on("shift", function(evt, event) {
+				removeListen();
+				$modalInstance.close();
+				$scope.shift(event);
 			});
 		}]);
 });

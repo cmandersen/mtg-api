@@ -15,7 +15,7 @@ require.config({
 		"angularRoute": ["angular"],
 		"angularResource": ["angular"],
 		"angularCookies": ["angular"],
-		"bootstrap": ["angular"],
+		"bootstrap": ['angular'],
 		"nappMenu": ["angular"],
 		"base64": ["angular"],
 	},
