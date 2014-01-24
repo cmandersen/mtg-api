@@ -2,31 +2,27 @@ define(["angular"], function(angular) {
 	'use strict';
 
 	return angular.module("mtg.controllers.cards", [])
-		.controller("CardListCtrl", ["$scope", "$resource", "$http", "User", "$base64", "limitToFilter", function($scope, $resource, $http, User, $base64, limitToFilter) {
-			// Auth
-			//$http.defaults.headers.common.Authorization = "Basic " + $base64.encode(User.getKey() + ":x");
+		.controller("CardListCtrl", ["$scope", "API", "User", function($scope, API, User) {
 			$scope.loggedin = function() {
 				return User.isLoggedIn();
 			}
-			//$http.get("/AllSets.json").success(function(data) {console.log(data);});
-			$scope.cards = [];
-			var resource = $resource("/api/v1/cards");
 
-			//fetchItems($scope, resource);
 			$scope.cardSearch = function() {
 				name = $scope.search;
 
-				resource.query({name: name, limit: 100}, function(data) {
+				API.Cards.query({name: name, limit: 100}, function(data) {
 					$scope.cards = data;
 				});
 			};
 		}])
-		.controller("CardCtrl", ["$scope", "$resource", "$routeParams", function($scope, $resource, $routeParams) {
-			$scope.card = $resource("/api/v1/cards/:id", {id: $routeParams.id}).get(function(data) {
+
+		.controller("CardCtrl", ["$scope", "API", "$routeParams", function($scope, API, $routeParams) {
+			$scope.card = API.Cards.get({id: $routeParams.id}, function(data) {
 				console.log(data);
 			});
 		}])
-		.controller("PlaneListCtrl", ["$scope", "$resource", "$routeParams", "$location", function($scope, $resource, $routeParams, $location) {
+
+		.controller("PlaneListCtrl", ["$scope", "API", "$routeParams", "$location", function($scope, API, $routeParams, $location) {
 
 			Array.prototype.chunk = function(chunkSize) {
 			    var R = [];
@@ -36,19 +32,19 @@ define(["angular"], function(angular) {
 			}
 
 			$scope.planeRows;
-			$scope.planes = $resource("/api/v1/planes").query(function(data) {
+			$scope.planes = API.Planes.query(function(data) {
 				$scope.planeRows = data.chunk(4);
-				console.log($scope.planeRows);
 			});
 
 			$scope.selectRandom = function() {
-				var rand = $scope.planes[Math.floor(Math.random() * $scope.planes.length)];
-
-				$location.path("/planes/" + rand.id);
+				$scope.planes = API.Planes.query({randomize: true}, function(data) {
+					$scope.planeRows = data.chunk(4);
+				});
 			};
 		}])
-		.controller("PlaneCtrl", ["$scope", "$resource", "$routeParams", function($scope, $resource, $routeParams) {
-			$scope.plane = $resource("/api/v1/planes/:id", {id: $routeParams.id}).get(function(data) {
+
+		.controller("PlaneCtrl", ["$scope", "API", "$routeParams", function($scope, API, $routeParams) {
+			$scope.plane = API.Planes.get({id: $routeParams.id}, function(data) {
 				console.log(data);
 			});
 		}]);

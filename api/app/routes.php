@@ -44,7 +44,9 @@ Route::group(array("prefix" => "v1"), function() {
 	})->where("id", "\d+");
 
 	Route::get("/planes", function() {
-		$planes = Card::where("type", "LIKE", "Plane %")->get();
+		$random = Input::get("randomize", false);
+
+		$planes = Card::where("type", "LIKE", "Plane %")->orderBy($random ? DB::raw('RAND()') : "name")->get();
 
 		return Response::json($planes, 200);
 	});
