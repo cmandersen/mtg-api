@@ -19,3 +19,5 @@ Route::get('/', function()
 Route::resource('users', 'UsersController');
 
 Route::resource('cards', 'CardsController');
+
+Route::get('planes', 'PlanesController@index');

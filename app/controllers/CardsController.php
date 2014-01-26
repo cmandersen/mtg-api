@@ -21,7 +21,7 @@ class CardsController extends BaseController {
 	 */
 	public function index()
 	{
-		$cards = $this->card->all();
+		$cards = $this->card->take(100)->get();
 
 		return View::make('cards.index', compact('cards'));
 	}
