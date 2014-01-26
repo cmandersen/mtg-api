@@ -23,8 +23,20 @@ class CardsApiController extends BaseController {
 	{
 		$limit = Input::get('limit', 50);
 		$offset = Input::get('offset', 0);
+		$type = Input::get('type');
+		$beginsWith = Input::get("begins");
 
-		$cards = $this->card->take($offset)->limit($limit)->get();
+		$query = $this->card;//->take($offset)->limit($limit);
+		
+		if($beginsWith) {
+			$query = $query->where(DB::raw("LOWER(title)"), "LIKE", "{$beginsWith}%");
+		}
+		
+		if($type) {
+			$query = $query->where("type", "LIKE", "%{$type}%");
+		}
+		
+		$cards = $query->get();
 
 		return Response::json($cards);
 	}

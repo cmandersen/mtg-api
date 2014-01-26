@@ -83,3 +83,5 @@ require app_path().'/filters.php';
 require app_path().'/patterns.php';
 
 require app_path().'/api.php';
+
+require app_path().'/html.php';

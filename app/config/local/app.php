@@ -34,6 +34,6 @@ return array(
 	),
 
 	'aliases' => array(
-		'Debugbar' => 'Barryvhh\Debugbar\Facade'
+		'Debugbar' => 'Barryvdh\Debugbar\Facade'
 	),
 );

@@ -21,7 +21,22 @@ class CardsController extends BaseController {
 	 */
 	public function index()
 	{
-		$cards = $this->card->take(100)->get();
+		$limit = Input::get('limit', 50);
+		$offset = Input::get('offset', 0);
+		$type = Input::get('type');
+		$beginsWith = Input::get("begins", "a");
+
+		$query = $this->card;//->take($offset)->limit($limit);
+		
+		if($beginsWith) {
+			$query = $query->where(DB::raw("LOWER(title)"), "LIKE", "{$beginsWith}%");
+		}
+		
+		if($type) {
+			$query = $query->where("type", "LIKE", "%{$type}%");
+		}
+		
+		$cards = $query->get();
 
 		return View::make('cards.index', compact('cards'));
 	}

@@ -1,9 +1,23 @@
 @extends('layouts.scaffold')
 
+@section('title') Cards @stop
+
 @section('main')
 
 <h1>Cards</h1>
-
+<div class="row-fluid">
+	<div class="btn-group">
+		<div class="btn-group">
+		  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		    Begins with <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu">
+		    <li><a href="?begins=a">A</a></li>
+		    <li><a href="?begins=b">B</a></li>
+		  </ul>
+		</div>
+	</div>
+</div> 
 @if ($cards->count())
 	<div class="row">
 	@foreach ($cards as $index => $card)
