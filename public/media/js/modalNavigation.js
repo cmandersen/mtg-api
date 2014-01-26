@@ -9,13 +9,14 @@ jQuery(document).ready(function($) {
 		var nextIndex = null;
 		$(".modal").each(function(index, elem) {
 			if($(elem).hasClass('in')) {
-				if((nextIndex = index + increment) == $(".modal").length) {
+				nextIndex = index + increment;
+				if((index + increment) == $(".modal").length) {
 					nextIndex = 0;
+				} else if(index + increment < 0) {
+					nextIndex = $(".modal").length -1;
 				}
 				$(elem).modal('hide');
-				console.log(increment);
-				console.log($(".modal").get(nextIndex));
-				$($(".modal").get(index + increment)).modal('show');
+				$($(".modal").get(nextIndex)).modal('show');
 				return false;
 			}
 		});
