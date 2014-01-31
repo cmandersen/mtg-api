@@ -13,11 +13,14 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('index');
 });
 
-Route::resource('users', 'UsersController');
+Route::group(array('prefix' => 'api/v1/'), function() {
+	Route::resource('users', 'UsersController');
 
-Route::resource('cards', 'CardsController');
+	Route::resource('cards', 'CardsApiController');
 
-Route::get('planes', 'PlanesController@index');
+	Route::get('planes', 'PlanesApiController@index');
+});
+

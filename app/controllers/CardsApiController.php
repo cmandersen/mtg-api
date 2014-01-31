@@ -21,20 +21,42 @@ class CardsApiController extends BaseController {
 	 */
 	public function index()
 	{
-		$limit = Input::get('limit', 50);
+		$limit = Input::get('limit', 48);
 		$offset = Input::get('offset', 0);
 		$type = Input::get('type');
 		$beginsWith = Input::get("begins");
+		$text = Input::get("text");
+		$colors = Input::get("colors");
+		$rarity = Input::get("rarity");
 
-		$query = $this->card;//->take($offset)->limit($limit);
+		$query = $this->card;
 		
 		if($beginsWith) {
 			$query = $query->where(DB::raw("LOWER(title)"), "LIKE", "{$beginsWith}%");
 		}
 		
-		if($type) {
+		if($type && $type != "Type") {
 			$query = $query->where("type", "LIKE", "%{$type}%");
 		}
+
+		if($text) {
+			$query = $query->where(DB::raw("LOWER(text)"), "LIKE", "%{$text}%");
+		}
+
+		if($colors && $colors != "Color") {
+			if($colors == "Neutral") {
+				$query = $query->where('color', '=', '[]');
+			} else {
+				$query = $query->where('color', 'LIKE', "%{$colors}%");
+			}
+			
+		}
+
+		if($rarity && $rarity != "Rarity") {
+			$query = $query->where("rarity", "=", $rarity);
+		}
+
+		$query->take($limit);
 		
 		$cards = $query->get();
 

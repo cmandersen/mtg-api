@@ -1,0 +1,88 @@
+<form role="form" class="form-inline">
+	<div class="form-group">
+		<div class="btn-group form-group">
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					{{ type }}
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a ng-click="filterType('Type')">Type</a></li>
+					<li class="divider"></li>
+					<li><a ng-click="filterType('Artifact')">Artifact</a></li>
+					<li><a ng-click="filterType('Creature')">Creature</a></li>
+					<li><a ng-click="filterType('Enchantment')">Enchantment</a></li>
+					<li><a ng-click="filterType('Instant')">Instant</a></li>
+					<li><a ng-click="filterType('Land')">Land</a></li>
+					<li><a ng-click="filterType('Planeswalker')">Planeswalker</a></li>
+					<li><a ng-click="filterType('Sorcery')">Sorcery</a></li>
+					<!--
+					<li><a ng-click="filterType('Tribal')">Tribal</a></li>
+					<li class="disabled"><a class="pull-left"><small>- Phenomena -</small></a></li>
+					<li><a ng-click="filterType('Schemes')"><small class="glyphicon glyphicon-chevron-right text-muted"></small> Schemes</a></li>
+					<li><a ng-click="filterType('Vanguard')"><small class="glyphicon glyphicon-chevron-right text-muted"></small> Vanguard</a></li>
+					<li class="disabled"><a class="pull-left"><small>- Supertype -</small></a></li>
+					<li><a ng-click="filterType('Basic')"><small class="glyphicon glyphicon-chevron-right text-muted"></small> Basic</a></li>
+					<li><a ng-click="filterType('Legendary')"><small class="glyphicon glyphicon-chevron-right text-muted"></small> Legendary</a></li>
+					<li><a ng-click="filterType('Snow')"><small class="glyphicon glyphicon-chevron-right text-muted"></small> Snow</a></li>
+					<li><a ng-click="filterType('World')"><small class="glyphicon glyphicon-chevron-right text-muted"></small> World</a></li>
+					-->
+				</ul>
+			</div>
+
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					{{ colors }}
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a ng-click="filterColors('Color')">Color</a></li>
+					<li class="divider"></li>
+					<li><a ng-click="filterColors('Neutral')">Neutral</a></li>
+					<li class="divider"></li>
+					<li><a ng-click="filterColors('Black')">Black</a></li>
+					<li><a ng-click="filterColors('Blue')">Blue</a></li>
+					<li><a ng-click="filterColors('Green')">Green</a></li>
+					<li><a ng-click="filterColors('Red')">Red</a></li>
+					<li><a ng-click="filterColors('White')">White</a></li>
+				</ul>
+			</div>
+
+			<div class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					{{ rarity }}
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a ng-click="filterRarity('Rarity')">Rarity</a></li>
+					<li class="divider"></li>
+					<li><a ng-click="filterRarity('Common')">Common</a></li>
+					<li><a ng-click="filterRarity('Uncommon')">Uncommon</a></li>
+					<li><a ng-click="filterRarity('Rare')">Rare</a></li>
+					<li><a ng-click="filterRarity('Mythic rare')">Mythic rare</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<input ng-model="search" type="text" placeholder="Search" ng-change="cardSearch()" class="form-control col-md-8">
+	</div>
+</form>
+<div class="row" ng-repeat="row in cardRows" ng-cloak>
+	<div class="col-md-3" ng-repeat="card in row">
+		<div class="thumbnail">
+			<a ng-click="openModal(card.id)">
+				<strong>{{ card.title }}</strong>
+				<img src="{{ card.image }}" alt="{{ card.title }}">
+			</a>
+		</div>
+	</div>
+</div>
+<div class="row-fluid">
+	<button ng-show="loaded" type="button" class="btn col-md-12" ng-click="loadNextBatch()">Load more</button>
+</div>
+<script type="text/ng-template" id="cardModal.html">
+	<div class="modal-body">
+        <img src="{{ card.image }}" class="img-responsive">
+    </div>
+</script>

@@ -1,0 +1,20 @@
+<button class="btn btn-default" ng-click="selectRandom()"><i class="glyphicon glyphicon-random"></i> Random</button>
+<br />
+<br />
+<div class="row" ng-repeat="row in planeRows" ng-cloak>
+	<div class="col-md-3" ng-repeat="plane in row">
+		<div class="thumbnail">
+			<a ng-click="openModal(plane.id)">
+				<strong>{{ plane.name }}</strong>
+				<img src="{{ plane.image }}" alt="{{ plane.name }}">
+			</a>
+		</div>
+	</div>
+</div>
+<div id="planesModal">
+<script type="text/ng-template" id="planeModal.html">
+    <div class="modal-body">
+        <img src="{{ plane.image }}" class="img-rounded img-responsive">
+    </div>
+</script>
+</div>
