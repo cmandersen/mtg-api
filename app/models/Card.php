@@ -37,7 +37,7 @@ class Card extends Eloquent {
 					"power" => isset($card->power) ? $card->power : 0,
 					"toughness" => isset($card->toughness) ? $card->toughness : 0,
 					"rarity" => isset($card->rarity) ? $card->rarity : "",
-					"image" => "http://mtgimage.com/set/" . $group->code . "/" . str_replace(" ", "%20", $card->imageName) . ".jpg",
+					"image" => "http://mtgimage.com/multiverseid/" . $card->multiverseid . ".jpg",
 					"color" => isset($card->colors) ? json_encode($card->colors) : "",
 					"set" => $group->name
 				));
