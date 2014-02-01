@@ -21,7 +21,7 @@ class CardsApiController extends BaseController {
 	 */
 	public function index()
 	{
-		$limit = Input::get('limit', 48);
+		$limit = Input::get('limit', 50);
 		$offset = Input::get('offset', 0);
 		$type = Input::get('type');
 		$beginsWith = Input::get("begins");
@@ -56,44 +56,11 @@ class CardsApiController extends BaseController {
 			$query = $query->where("rarity", "=", $rarity);
 		}
 
-		$query->take($limit);
+		$query = $query->take($limit);
 		
 		$cards = $query->get();
 
 		return Response::json($cards);
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		return View::make('cards.create');
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$input = Input::all();
-		$validation = Validator::make($input, Card::$rules);
-
-		if ($validation->passes())
-		{
-			$this->card->create($input);
-
-			return Redirect::route('cards.index');
-		}
-
-		return Redirect::route('cards.create')
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -107,62 +74,6 @@ class CardsApiController extends BaseController {
 		$card = $this->card->findOrFail($id);
 
 		return Response::json($card);
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		$card = $this->card->find($id);
-
-		if (is_null($card))
-		{
-			return Redirect::route('cards.index');
-		}
-
-		return View::make('cards.edit', compact('card'));
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		$input = array_except(Input::all(), '_method');
-		$validation = Validator::make($input, Card::$rules);
-
-		if ($validation->passes())
-		{
-			$card = $this->card->find($id);
-			$card->update($input);
-
-			return Redirect::route('cards.show', $id);
-		}
-
-		return Redirect::route('cards.edit', $id)
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		$this->card->find($id)->delete();
-
-		return Redirect::route('cards.index');
 	}
 
 	/**

@@ -16,11 +16,16 @@ Route::get('/', function()
 	return View::make('index');
 });
 
-Route::group(array('prefix' => 'api/v1/'), function() {
-	Route::resource('users', 'UsersController');
+Route::group(array('prefix' => 'api'), function() {
+	Route::group(array('prefix' => 'v1'), function() {
+		Route::get('cards', 'CardsApiController@index');
+		Route::get('cards/{id}', 'CardsApiController@show');
+		Route::get('planes', 'PlanesApiController@index');
+		Route::get('planes/{id}', 'PlanesApiController@show');
 
-	Route::resource('cards', 'CardsApiController');
-
-	Route::get('planes', 'PlanesApiController@index');
+		Route::group(array('before' => array('auth.basic')), function() {
+			Route::get('update', 'CardsApiController@updateDb');
+		});
+	});
 });
 
