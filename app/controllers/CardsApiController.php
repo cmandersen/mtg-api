@@ -21,7 +21,7 @@ class CardsApiController extends BaseController {
 	 */
 	public function index()
 	{
-		$limit = Input::get('limit', 48);
+		$limit = Input::get('limit', 50);
 		$offset = Input::get('offset', 0);
 		$type = Input::get('type');
 		$beginsWith = Input::get("begins");
@@ -56,7 +56,7 @@ class CardsApiController extends BaseController {
 			$query = $query->where("rarity", "=", $rarity);
 		}
 
-		$query->take($limit);
+		$query = $query->take($limit);
 		
 		$cards = $query->get();
 
