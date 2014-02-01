@@ -1,3 +1,28 @@
-<div>
-	Welcome to my MTG API demo, using AngularJS.
+<h1>Magic the Gathering API</h1>
+<hr>
+<div class="jumbotron">
+	<p>Welcome to my Magic the Gathering API demonstration site!</p>
+	<p>The source code for this site is freely available <a href="https://github.com/cmandersen/mtg-api" title="My GitHub repository for this site">on GitHub</a></p>
+</div>
+<div class="well">
+	<h2>The idea...</h2>
+	<p>The idea for this API/site came from many different places. It started as the carrot at the end of the stick to learn developing with <a href="http://angularjs.org/">AngularJS</a> <i>(and, of course, actually playing Magic the Gathering)</i>. I wanted to see how you would go about gathering all card-information, and displaying it in an easy-to-grasp fashion.</p>
+	<p>Other than the actual importing, <a href="http://laravel.com/">Laravel</a> was the obvious choice of backend. It's simple routing and wonderful implementation of MVC, made it a joy to work with.</p>
+	<p>What started as just an API/data-access-point quickly grew into a web-app that would lend a helping hand to MtG-players <i>(currently, mostly those that play MtG Planechaser-style).</i></p>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<div class="well">
+			<h2>Technology...</h2>
+			<p>The frontend that you see here is built with <a href="http://angularjs.org/">AngularJS</a>, and styled with <a href="http://getbootstrap.com/">Bootstrap</a>.</p>
+			<p>The backend/API layer that you can't see, but is serving you all this magnificent information is built with <a href="http://laravel.com/">Laravel</a>.</p>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="well">
+			<h2>How it works...</h2>
+			<p>Once in a while, a script will run. That script will download the newest .json-file from <a href="http://mtgjson.com/">MTGJSON</a>, and update the database with the newest information about Magic the Gathering.</p>
+			<p>Pictures of the cards are fetched from <a href="http://mtgimage.com/">MTGImages</a>.</p>
+		</div>
+	</div>
 </div>

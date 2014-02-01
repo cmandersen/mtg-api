@@ -12,6 +12,8 @@ define(["angular"], function(angular) {
 
 			$scope.limit = 48;
 
+			API.Cards.query(updateCards);
+
 			$scope.loggedin = function() {
 				return User.isLoggedIn();
 			}

@@ -32,7 +32,7 @@ class CardsApiController extends BaseController {
 		$query = $this->card;
 		
 		if($beginsWith) {
-			$query = $query->where(DB::raw("LOWER(title)"), "LIKE", "{$beginsWith}%");
+			$query = $query->where(DB::raw("LOWER(title)"), "LIKE", "%{$beginsWith}%");
 		}
 		
 		if($type && $type != "Type") {
