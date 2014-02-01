@@ -29,22 +29,25 @@ define(["angular"], function(angular) {
 
 			$scope.filterType = function(des) {
 				$scope.type = des;
+				$scope.limit = $scope.step;
 				API.Cards.query({limit: $scope.limit, begins: $scope.search, type: $scope.type, colors: $scope.colors, rarity: $scope.rarity}, updateCards);
 			};
 
 			$scope.filterColors = function(color) {
 				$scope.colors = color;
+				$scope.limit = $scope.step;
 				API.Cards.query({limit: $scope.limit, begins: $scope.search, type: $scope.type, colors: $scope.colors, rarity: $scope.rarity}, updateCards);
 			};
 
 			$scope.filterRarity = function(rar) {
 				$scope.rarity = rar;
+				$scope.limit = $scope.step;
 				API.Cards.query({limit: $scope.limit, begins: $scope.search, type: $scope.type, colors: $scope.colors, rarity: $scope.rarity}, updateCards);
 			};
 
 			$scope.cardSearch = function() {
 				name = $scope.search;
-
+				$scope.limit = $scope.step;
 				API.Cards.query({limit: $scope.limit, begins: name, type: $scope.type, colors: $scope.colors, rarity: $scope.rarity}, updateCards);
 			};
 

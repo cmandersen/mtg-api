@@ -24,10 +24,8 @@
 	</head>
 	<body ng-controller="IndexCtrl" ng-shift>
 		<menu title="MTG Database" ng-cloak>
-			<menu-item-parent match="/cards.*|/planes.*" title="Cards">
-				<menu-item route="#/cards" match="/cards">Cards</menu-item>
-				<menu-item route="#/planes" match="/planes">Planes</menu-item>
-			</menu-item-parent>
+			<menu-item route="#/cards" match="/cards">Cards</menu-item>
+			<menu-item route="#/planes" match="/planes">Planes</menu-item>
 
 			<menu-item ng-show="isAdmin()" route="#/update" match="/update">Update Card Database</menu-item>
 			<!--
