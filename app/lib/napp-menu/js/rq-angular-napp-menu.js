@@ -43,7 +43,7 @@ define(["angular"], function(angular) {
 							}
 						});
 					},
-					templateUrl: "/app/lib/napp-menu/partials/menu.html",
+					templateUrl: "app/lib/napp-menu/partials/menu.html",
 				};
 			}
 		])
@@ -60,7 +60,7 @@ define(["angular"], function(angular) {
 				link: function(scope, element, attrs, menuCtrl) {
 					menuCtrl.addItem(scope.match, element);
 				},
-				templateUrl: "/app/lib/napp-menu/partials/menu-item-parent.html"
+				templateUrl: "app/lib/napp-menu/partials/menu-item-parent.html"
 			};
 		})
 		.directive('menuItem', function() {
@@ -77,7 +77,7 @@ define(["angular"], function(angular) {
 				link: function(scope, element, attrs, menuCtrl) {
 					menuCtrl.addItem(scope.match, element);
 				},
-				templateUrl: "/app/lib/napp-menu/partials/menu-item.html",
+				templateUrl: "app/lib/napp-menu/partials/menu-item.html",
 			}
 		});
 });
