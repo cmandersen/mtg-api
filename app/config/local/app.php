@@ -28,13 +28,8 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-
-		'Barryvdh\Debugbar\ServiceProvider',
+		
 		'Way\Generators\GeneratorsServiceProvider',
 		'Barryvdh\Cors\CorsServiceProvider',
-	),
-
-	'aliases' => array(
-		'Debugbar' => 'Barryvdh\Debugbar\Facade'
 	),
 );
