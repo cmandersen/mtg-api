@@ -10,12 +10,6 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
-Route::get('/', function()
-{
-	return View::make('index');
-});
-
 Route::group(array('prefix' => 'api'), function() {
 	Route::group(array('prefix' => 'v1'), function() {
 		Route::get('cards', 'CardsApiController@index');
