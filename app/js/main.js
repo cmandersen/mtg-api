@@ -4,9 +4,9 @@ require.config({
 		angularRoute: "//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.min",
 		angularResource: "//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min",
 		angularCookies: "//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-cookies.min",
-		bootstrap: "bootstrap/ui-bootstrap-custom-0.9.0.min",
-		nappMenu: "napp-menu/js/rq-angular-napp-menu",
-		base64: "base64",
+		bootstrap: "../lib/bootstrap/ui-bootstrap-custom-0.9.0.min",
+		nappMenu: "../lib/napp-menu/js/rq-angular-napp-menu",
+		base64: "../lib/base64",
 	},
 	shim: {
 		"angular": {
