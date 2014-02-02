@@ -1,0 +1,27 @@
+.modal-dialog {
+	height: 94%;
+	width: auto;
+}
+
+.modal-dialog img {
+	height: 100%;
+	margin: 0 auto;
+}
+
+.modal-dialog .modal-content {
+	background-color: transparent;
+	border-radius: 40px;
+	width: auto;
+	height: 100%;
+	border: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.modal-dialog .modal-content .modal-body {
+	height: 100%;
+}
+
+.img-rounded {
+	border-radius: 6%;
+}
