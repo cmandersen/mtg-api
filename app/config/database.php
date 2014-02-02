@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'database',
-			'username'  => 'root',
-			'password'  => '',
+			'database'  => 'mtg_v1',
+			'username'  => 'mtg_laravel',
+			'password'  => '2yRBHJT49xTidx95cV',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

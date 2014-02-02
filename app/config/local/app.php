@@ -31,6 +31,7 @@ return array(
 
 		'Barryvdh\Debugbar\ServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
+		'Barryvdh\Cors\CorsServiceProvider',
 	),
 
 	'aliases' => array(
