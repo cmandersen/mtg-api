@@ -33,8 +33,8 @@ define(["angular"], function(angular) {
 
 		.factory("API", ["$resource", function($resource) {
 			return {
-				Cards: $resource("/api/v1/cards/:id", {id: "@id"}),
-				Planes: $resource("/api/v1/planes/:id", {id: "@id"}),
+				Cards: $resource("http://mtg.cmandersen.com/api/v1/cards/:id", {id: "@id"}),
+				Planes: $resource("http://mtg.cmandersen.com/api/v1/planes/:id", {id: "@id"}),
 			};
 		}])
 		.service("Plane", ["API", "$rootScope", function(API, $rootScope) {
