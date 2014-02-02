@@ -4,12 +4,12 @@
 
 This is my version of a Magic the Gathering [REST](http://en.wikipedia.org/wiki/REST) API, utilizing [MTGJSON](http://mtgjson.com/) for the raw data and [MTGImage](http://mtgimage.com/) for links to the images.
 
-As with all (actual) REST API's, if you add the id of an item to the url ([.../api/v1/cards/1](http://mtg.cmandersen.com/api/v1/cards/1), you will get the item with that specific id.
+As with all (actual) REST API's, if you add the id of an item to the url ([.../api/v1/cards/1](http://api.cmandersen.com/mtg/api/v1/cards/1), you will get the item with that specific id.
 
 
 ## Getting the cards ##
 
-**Link**: [.../api/v1/cards](http://mtg.cmandersen.com/api/v1/cards)
+**Link**: [.../api/v1/cards](http://api.cmandersen.com/mtg/api/v1/cards)
 
 ### Options ###
 
@@ -28,7 +28,7 @@ As with all (actual) REST API's, if you add the id of an item to the url ([.../a
 
 ## Getting the planes ##
 
-**Link**: [.../api/v1/planes](http://mtg.cmandersen.com/api/v1/planes)
+**Link**: [.../api/v1/planes](http://api.cmandersen.com/mtg/api/v1/planes)
 
 ### Options ###
 
