@@ -8,8 +8,8 @@
 		"barryvdh/laravel-cors": "dev-master"
 	},
 	"require-dev": {
-		"way/generators": "1.0.*@dev",
-		"mockery/mockery": "0.9.*@dev"
+		"way/generators": "2.*",
+		"mockery/mockery": "0.9.*"
 	},
 	"autoload": {
 		"classmap": [
