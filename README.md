@@ -37,7 +37,7 @@ As with all (actual) REST API's, if you add the id of an item to the url (.../ap
 | `limit`  | Limits the number of items fetched            | Integer    |      `50` |
 | `offset` | Defines the index of where to start fetching  | Integer    |       `0` |
 | `type`   | The type of card to search for                | String     |    `null` |
-| `begins` | The start of the name of the cards            | String     |    `null` |
+| `title`  | A part of the name of the cards               | String     |    `null` |
 | `text`   | A part of text on the cards                   | String     |    `null` |
 | `colors` | The color of the cards to fetch               | String     |    `null` |
 | `rarity` | The rarity of the cards to fetch              | String     |    `null` |
