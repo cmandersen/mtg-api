@@ -1,6 +1,8 @@
 <?php
 
 return array(
+    'debug' => true,
+    'url' => 'http://api.dev',
 	'providers' => array(
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
