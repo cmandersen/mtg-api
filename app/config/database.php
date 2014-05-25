@@ -54,13 +54,13 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'mtg_v1',
-			'username'  => 'mtg_laravel',
-			'password'  => '2yRBHJT49xTidx95cV',
+			'host'      => isset($_ENV['DB_HOST']) ? $_ENV['DB_HOST'] : 'localhost',
+			'database'  => isset($_ENV['DB_NAME']) ? $_ENV['DB_NAME'] : 'test',
+			'username'  => isset($_ENV['DB_USERNAME']) ? $_ENV['DB_USERNAME'] : 'root',
+			'password'  => isset($_ENV['DB_PASSWORD']) ? $_ENV['DB_PASSWORD'] : 'root',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
+			'prefix'    => ''
 		),
 
 		'pgsql' => array(
