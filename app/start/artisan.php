@@ -1,5 +1,8 @@
 <?php
 
+use MTG\MtgFill;
+use MTG\MtgUpdate;
+
 /*
 |--------------------------------------------------------------------------
 | Register The Artisan Commands
@@ -11,3 +14,5 @@
 |
 */
 
+Artisan::add(new MtgFill);
+Artisan::add(new MtgUpdate);
