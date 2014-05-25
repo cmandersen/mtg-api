@@ -24,7 +24,8 @@ class CreateCardsTable extends Migration {
 			$table->string('rarity');
 			$table->string('image');
 			$table->string('color');
-			$table->string('set');
+			$table->integer('set_id')->unsigned();
+            $table->foreign('set_id')->references('id')->on('sets');
 			$table->timestamps();
 		});
 	}

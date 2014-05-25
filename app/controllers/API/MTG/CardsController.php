@@ -1,6 +1,10 @@
-<?php
+<?php namespace API\MTG;
 
-class CardsApiController extends BaseController {
+use API\ApiController;
+use Input;
+use DB;
+
+class CardsController extends ApiController {
 
 	/**
 	 * Card Repository
@@ -24,15 +28,15 @@ class CardsApiController extends BaseController {
 		$limit = Input::get('limit', 50);
 		$offset = Input::get('offset', 0);
 		$type = Input::get('type');
-		$beginsWith = Input::get("begins");
+		$title = Input::get("title");
 		$text = Input::get("text");
 		$colors = Input::get("colors");
 		$rarity = Input::get("rarity");
 
-		$query = $this->card;
+		$query = $this->card->where("type", "NOT LIKE", "Plane %");
 		
-		if($beginsWith) {
-			$query = $query->where(DB::raw("LOWER(title)"), "LIKE", "%{$beginsWith}%");
+		if($title) {
+			$query = $query->where(DB::raw("LOWER(title)"), "LIKE", "%{$title}%");
 		}
 		
 		if($type && $type != "Type") {
@@ -56,11 +60,13 @@ class CardsApiController extends BaseController {
 			$query = $query->where("rarity", "=", $rarity);
 		}
 
-		$query = $query->take($limit);
-		
-		$cards = $query->get();
+        $query = $query->orderBy('title')->groupBy('title');
 
-		return Response::json($cards);
+		$query = $query->take($limit)->skip($offset);
+		
+		$cards = $query->remember(60)->get();
+
+		return $this->respond($cards);
 	}
 
 	/**
@@ -69,26 +75,9 @@ class CardsApiController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(Card $card)
 	{
-		$card = $this->card->findOrFail($id);
-
-		return Response::json($card);
-	}
-
-	/**
-	 * Update the cards table
-	 *
-	 * @return Response
-	 * @author Christian Morgan Andersen <cmandersen@outlook.com>
-	 **/
-	public function updateDb()
-	{
-		if($this->card->updateDb()) {
-			return Response::json(array(), 200);
-		} else {
-			return Response::json(array(), 403);
-		}
+		return $this->respond($card);
 	}
 
 }
