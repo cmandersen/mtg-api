@@ -7,6 +7,25 @@ This is my version of a Magic the Gathering [REST](http://en.wikipedia.org/wiki/
 As with all (actual) REST API's, if you add the id of an item to the url (.../api/v1/cards/1), you will get the item with that specific id.
 
 
+## Getting the sets ##
+
+**Link**: .../api/v1/sets
+
+
+## Getting the cards of a set ##
+
+**Link**: .../api/v1/sets/{id}/cards
+
+### Options ###
+
+| Param    | Function                                      | Accepts    | Default   |
+| -------- | --------------------------------------------- |:----------:| ---------:|
+| `limit`  | Limits the number of items fetched            | Integer    |      `50` |
+| `offset` | Defines the index of where to start fetching  | Integer    |       `0` |
+
+**Warning**: If you set the limit too high, you query will fail. The maximum limit varies from server to server.
+
+
 ## Getting the cards ##
 
 **Link**: .../api/v1/cards
