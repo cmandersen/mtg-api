@@ -1,0 +1,19 @@
+<div class="well">
+	<strong>How to use:</strong>
+	<p>Click a planes image to show a larger version in a pop-over. Navigate between planes using the arrow keys. Close the pop-over by pressing escape.</p>
+	<p><i>Clicking the "Random"-button will randomize the order of the planes.</i></p>
+</div>
+<button class="btn btn-default" ng-click="selectRandom()"><i class="fa fa-random"></i> Random</button>
+<br />
+<br />
+<div class="row" ng-cloak>
+	<div class="col-md-3" ng-repeat="plane in planes">
+		<div class="thumbnail">
+			<a ng-click="openModal(plane.id)">
+				<strong>{{ plane.name }}</strong>
+				<img class="img-rounded-2x plane" ng-src="http://cdn.cmandersen.net/mtg/planes/thumb/{{ plane.id }}.jpg" alt="{{ plane.name }}">
+                <img ng-src="{{ plane.image }}" ng-hide="true">
+			</a>
+		</div>
+	</div>
+</div>
